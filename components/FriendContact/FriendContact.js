@@ -1,23 +1,19 @@
-
-
-import { importHtml } from '/importer/importer.js'
+import { importTemplate, importComponents } from '/importer/importer.js'
 
 export default {
-  template: await importHtml( import.meta ),
+  template: await importTemplate( import.meta ),
+  props: [ 'friend' ],
   data() {
     return {
-      detailsAreVisible: false,
-      friend: {
-        id: "manuel",
-        name: "Manuel Lorenzo",
-        phone: "01234 5678 991",
-        email: "manuel@localhost.com",
-      },
-    };
+      detailsAreVisible: false
+    }
   },
   methods: {
     toggleDetails() {
       this.detailsAreVisible = !this.detailsAreVisible;
     },
   },
+  components: await importComponents([
+    'todo-component',
+  ])
 };

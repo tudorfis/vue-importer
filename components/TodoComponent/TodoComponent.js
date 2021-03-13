@@ -1,5 +1,5 @@
-import { importHtml } from '/importer/importer.js'
+import { importTemplate } from '/importer/importer.js'
 
 export default {
-  template: await importHtml( import.meta ),
+  template: await importTemplate( import.meta ),
 }

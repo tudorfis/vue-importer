@@ -1,7 +1,7 @@
 
 import importsComponents from '../config/component.list.js' 
 
-export const importComponents = ({ app, componentList }) => {
+export const importComponents = componentList => {
     return new Promise( async resolve => {
         const components = {}
 
@@ -13,17 +13,11 @@ export const importComponents = ({ app, componentList }) => {
             components[ componentName ] = es6module
         }
 
-        if ( app ) {
-            for ( const componentName in components ) {
-                app.component( componentName, components[ componentName ] )
-            }
-        }
-
         resolve( components )
     })
 }
 
-export const importHtml = meta => {
+export const importTemplate = meta => {
     return new Promise( async resolve => {
         const templateUrl = meta.url.replace( 'js', 'html' )
         const template = await ( await fetch( templateUrl  )).text() 
