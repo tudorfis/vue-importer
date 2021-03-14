@@ -1,27 +1,23 @@
 
 import importsComponents from '../config/component.list.js' 
 
-export const importComponents = componentList => {
-    return new Promise( async resolve => {
-        const components = {}
+export const importComponents = async componentList => {
+    const components = {}
 
-        for await ( const componentName of componentList ) {
-            const importFunction = importsComponents[ componentName ]
-            if ( !importFunction ) continue
-    
-            const { default: es6module } = await importFunction()
-            components[ componentName ] = es6module
-        }
+    for await ( const componentName of componentList ) {
+        const importFunction = importsComponents[ componentName ]
+        if ( !importFunction ) continue
 
-        resolve( components )
-    })
+        const { default: es6module } = await importFunction()
+        components[ componentName ] = es6module
+    }
+
+    return components
 }
 
-export const importTemplate = meta => {
-    return new Promise( async resolve => {
-        const templateUrl = meta.url.replace( 'js', 'html' )
-        const template = await ( await fetch( templateUrl  )).text() 
+export const importTemplate = async meta => {
+    const templateUrl = meta.url.replace( 'js', 'html' )
+    const template = await ( await fetch( templateUrl  )).text() 
 
-        resolve( template )
-    })
-}
+    return template
+ }
