@@ -1,7 +1,23 @@
 <ul>
-  <friend-contact 
+  <FriendContact 
     v-for="friend of friends"
     :key="friend.id"
     :friend="friend"
   />
 </ul>
+
+<div 
+  style="
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+  "
+>
+  <button @click="$refs.dialogBox.opened = true">
+    Show Dialog Box
+  </button>
+</div>
+
+<teleport to="#app">
+  <dialog-box ref="dialogBox"></dialog-box>
+</teleport>

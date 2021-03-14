@@ -1,7 +1,7 @@
 import { importTemplate, importComponents, importAllComponents } from './importer/importer.js'
 
 const app = Vue.createApp({
-  template: '<app-component />',
+  template: '<AppComponent />',
 })
 
 window.TDR = {

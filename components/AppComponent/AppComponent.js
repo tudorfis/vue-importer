@@ -33,7 +33,7 @@ export default {
         }
     },
     mounted() {
-        // return
+        return
 
         setInterval(_ => {
             this.friends.push({
