@@ -17,12 +17,6 @@ export default {
                     email: "julie@localhost.com",
                 },
             ],
-            // tudor: {
-            //     name: 'tudor',
-            //     age: {
-            //         realAge: 31
-            //     }
-            // }
         }
     },
     provide() {
@@ -37,59 +31,52 @@ export default {
             this.friends.splice( friendIndex, 1 )
         }
     },
-    mounted() {
-        this.aFn.call({ asd: 'a' })
-        return
-
-        setInterval(_ => {
-            this.friends.push({
-                id: new Date().toISOString(),
-                name: TDR.randomString(),
-                phone: TDR.randomString(),
-                email: TDR.randomString(),
-            })
-        }, 1000)
-    },
-
-    ////////////////////////
-
-    /**
-    setup: _ => ({ 
-        'tudor': Vue.ref( '' )
-    })
-    */
-
     setup() { 
-        const age = Vue.ref( 31 )
         const tudor = Vue.reactive({
             name: 'tudor',
-            age: {
-                realAge: 31
-            }
+            age: 31
         })
+
         const fruits = Vue.reactive([
             'banana',
             'apple',
             'peach'
         ])
-        const aFn = Vue.reactive(function() {
-            console.log( this.asd )
-        })
-        
-        setTimeout( _ => {
-            tudor.age.realAge = 50
-            fruits.push( 'pinaple' )
-            
-            aFn.call({ asd: 'b' })
 
-            console.log(age)
-        }, 1500)
+        const tudorAndName = Vue.computed({
+            get() {
+                return `${ tudor.name } - ${ tudor.age }`
+            },
+            set( value ) {
+                tudor.name = value.split(' - ')[0]
+                tudor.age = +value.split(' - ')[1]
+            }
+        })
+
+        function setNewAge() {
+            tudor.age = 50
+        }
+
+        function setNewTudorAndAge() {
+            tudorAndName.value = 'cristina - 34'
+        }
+
+        function addRandomFruit() {
+            fruits.push( TDR.randomString() )
+        }
+
+        Vue.watch([ tudor, fruits ], (newValue, oldValue) => {
+            const [ , fruits ] = newValue
+            console.log( { ...fruits } )
+        })
 
         return {
-            age,
             tudor,
             fruits,
-            aFn
+            tudorAndName,
+            setNewAge,
+            setNewTudorAndAge,
+            addRandomFruit
         }
     }
 }   
