@@ -3,7 +3,12 @@ import { importTemplate, importComponents, importAllComponents } from './importe
 import { randomString, randomNumber } from '/utils/string.utils.js'
 
 const app = Vue.createApp({
-  template: '<AppComponent />',
+  template: '<AppComponent name="app" @asd="a" />',
+  methods: {
+    a() {
+      console.log('a')
+    }
+  }
 })
 
 

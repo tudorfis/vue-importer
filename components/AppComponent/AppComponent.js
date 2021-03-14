@@ -31,7 +31,9 @@ export default {
             this.friends.splice( friendIndex, 1 )
         }
     },
-    setup() { 
+    setup( _, { attrs }) {
+        console.log( attrs )
+
         const tudor = Vue.reactive({
             name: 'tudor',
             age: 31
@@ -69,6 +71,9 @@ export default {
             const [ , fruits ] = newValue
             console.log( { ...fruits } )
         })
+
+        Vue.onBeforeMount(_ => console.log( 'onBeforeMount'))
+        Vue.onMounted(_ => console.log( 'mount'))
 
         return {
             tudor,
