@@ -1,16 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap');
+@import url('./css/_reset.css');
+@import url('./css/_animations.css');
+@import url('./css/_dialog.css');
 
-* {
-  box-sizing: border-box;
-}
 
-html {
-  font-family: 'Jost', sans-serif;
-}
-
-body {
-  margin: 0;
-}
 
 header {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);

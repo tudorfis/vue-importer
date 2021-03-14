@@ -1,4 +1,3 @@
-import { randomString } from '/utils/string.utils.js'
 
 export default {
     template: await TDR.importTemplate( import.meta ),
@@ -38,9 +37,9 @@ export default {
         setInterval(_ => {
             this.friends.push({
                 id: new Date().toISOString(),
-                name: randomString(),
-                phone: randomString(),
-                email: randomString(),
+                name: TDR.randomString(),
+                phone: TDR.randomString(),
+                email: TDR.randomString(),
             })
         }, 1000)
     }

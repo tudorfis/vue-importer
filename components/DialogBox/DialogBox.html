@@ -1,4 +1,11 @@
-<dialog :open="opened">
+<div 
+  v-show="opened"
+  class="backdrop fade-in"
+/>
+<dialog 
+  :open="opened"
+  class="fade-in"
+>
   <h1>Problem!</h1>
   <p>Ceva nu merge bruh..</p>
   <button @click="closeDialog">Ok ok, inchide-ma</button>
