@@ -1,6 +1,18 @@
 <header>
-  <h1>FriendList</h1>
+  <h1>FriendList {{ tudor.age.realAge }}</h1>
+  <input v-model="tudor.age.realAge" />
+  <input v-model="age" />
+  <ul>
+    <li 
+      style="
+        background: white;
+        color: black;
+      "
+      v-for="fruit in fruits"
+    >{{ fruit }}</li>
+  </ul>
 </header>
+{{ age }}
 <section>
   <FriendsList />
 </section>

@@ -3,7 +3,7 @@ export default {
     template: await TDR.importTemplate( import.meta ),
     data() {
         return {
-            opened: true
+            opened: false
         }
     },
     methods: {
