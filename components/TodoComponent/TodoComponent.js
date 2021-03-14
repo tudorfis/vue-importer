@@ -1,4 +1,4 @@
 
 export default {
-  template: await importTemplate( import.meta ),  
+  template: await TDR.importTemplate( import.meta ),  
 }
