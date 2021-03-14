@@ -1,8 +1,8 @@
-import { importTemplate, importComponents } from '/importer/importer.js'
 
 export default {
   template: await importTemplate( import.meta ),
   props: [ 'friend' ],
+  inject: [ 'deleteFriend' ],
   data() {
     return {
       detailsAreVisible: false
@@ -12,8 +12,5 @@ export default {
     toggleDetails() {
       this.detailsAreVisible = !this.detailsAreVisible;
     },
-  },
-  components: await importComponents([
-    'todo-component',
-  ])
+  }
 };

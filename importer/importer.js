@@ -1,11 +1,18 @@
 
-import importsComponents from '../config/component.list.js' 
+import componentListAll from '/config/component.list.js' 
+
+export const importAllComponents = async app => {
+    const components = await importComponents( Object.keys( componentListAll ) )
+    for ( const componentName in components ) {
+        app.component( componentName, components[ componentName ] )
+    }
+}
 
 export const importComponents = async componentList => {
     const components = {}
 
     for await ( const componentName of componentList ) {
-        const importFunction = importsComponents[ componentName ]
+        const importFunction = componentListAll[ componentName ]
         if ( !importFunction ) continue
 
         const { default: es6module } = await importFunction()

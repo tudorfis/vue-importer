@@ -1,6 +1,10 @@
-import { importComponents } from './importer/importer.js'
+import { importTemplate, importAllComponents } from './importer/importer.js'
 
-Vue.createApp({
-  template: '<app-component></app-component>',
-  components: await importComponents([ 'app-component' ])
-}).mount('#app');
+const app = Vue.createApp({
+  template: '<app-component />',
+})
+
+window.importTemplate = importTemplate
+await importAllComponents( app )
+
+app.mount('#app')

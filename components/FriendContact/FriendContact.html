@@ -4,8 +4,13 @@
   <button @click="toggleDetails()">
     {{ detailsAreVisible ? 'Hide' : 'Show' }} Details
   </button>
+  <button @click="deleteFriend( friend )">
+    Delete Friend
+  </button>
   <ul v-if="detailsAreVisible">
     <li><strong>Phone:</strong> {{ friend.phone }}</li>
     <li><strong>Email:</strong> {{ friend.email }}</li>
   </ul>
+  <img src="" />
+  <div class="border" />
 </li>
