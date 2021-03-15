@@ -19,6 +19,9 @@ export default {
             ],
         }
     },
+    computed: {
+        ...Vuex.mapGetters( [ 'counter' ] )
+    },
     provide() {
         return {
             friends: this.friends,
@@ -29,11 +32,10 @@ export default {
         deleteFriend( friend ) {
             const friendIndex = this.friends.indexOf( friend );
             this.friends.splice( friendIndex, 1 )
-        }
+        },
+        ...Vuex.mapActions( [ 'increment' ])
     },
-    setup( _, { attrs }) {
-        console.log( attrs )
-
+    setup() {
         const tudor = Vue.reactive({
             name: 'tudor',
             age: 31
@@ -69,11 +71,19 @@ export default {
 
         Vue.watch([ tudor, fruits ], (newValue, oldValue) => {
             const [ , fruits ] = newValue
-            console.log( { ...fruits } )
         })
 
         Vue.onBeforeMount(_ => console.log( 'onBeforeMount'))
         Vue.onMounted(_ => console.log( 'mount'))
+
+        const store = Vuex.useStore()
+            
+        console.log( store )
+        function inc() {
+            store.dispatch( 'increment' )
+        }
+
+        const count = Vue.computed(_ => store.getters[ 'counter' ])
 
         return {
             tudor,
@@ -81,7 +91,9 @@ export default {
             tudorAndName,
             setNewAge,
             setNewTudorAndAge,
-            addRandomFruit
+            addRandomFruit,
+            inc,
+            count
         }
     }
 }   

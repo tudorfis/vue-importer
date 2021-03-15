@@ -1,18 +1,24 @@
 
-import componentListAll from '/config/component.list.js' 
+import baseComponentList from '/config/components/base-component.list.js' 
+import scopedComponentList from '/config/components/scoped-component.list.js' 
+import mixinListAll from '/config/mixins.list.js' 
 
-export const importAllComponents = async app => {
-    const components = await importComponents( Object.keys( componentListAll ) )
+export const importBaseComponents = async app => {
+    const components = await importComponents( 
+        Object.keys( baseComponentList ),
+        baseComponentList
+    )
+
     for ( const componentName in components ) {
         app.component( componentName, components[ componentName ] )
     }
 }
 
-export const importComponents = async componentList => {
+export const importComponents = async ( componentList, componentConfigList = scopedComponentList ) => {
     const components = {}
 
     for await ( const componentName of componentList ) {
-        const importFunction = componentListAll[ componentName ]
+        const importFunction = componentConfigList[ componentName ]
         if ( !importFunction ) continue
 
         const { default: es6module } = await importFunction()
@@ -27,4 +33,18 @@ export const importTemplate = async meta => {
     const template = await ( await fetch( templateUrl  )).text() 
 
     return template
- }
+}
+
+export const importMixins = async mixinsList => {
+    const mixins = []
+
+    for await ( const mixinName of mixinsList ) {
+        const importFunction = mixinListAll[ mixinName ]
+        if ( !importFunction ) continue
+
+        const { default: es6module } = await importFunction()
+        mixins.push( es6module )
+    }
+
+    return mixins
+}

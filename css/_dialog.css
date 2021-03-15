@@ -8,6 +8,7 @@
   z-index: 10;
 }
 dialog {
+  position: fixed;
   z-index: 11;
   top: 20%;
 }
