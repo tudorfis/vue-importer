@@ -35,6 +35,20 @@ export default {
         },
         ...Vuex.mapActions( [ 'increment' ])
     },
+    mounted() {
+        return
+        
+        setInterval(_ => {
+            this.friends.push(
+                {
+                    id: TDR.randomString(),
+                    name: "Manuel Lorenz",
+                    phone: "01234 5678 991",
+                    email: "manuel@localhost.com"
+                }
+            )
+        }, 1000)
+    },
     setup() {
         const tudor = Vue.reactive({
             name: 'tudor',

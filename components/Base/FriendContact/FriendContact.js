@@ -1,4 +1,5 @@
 
+
 export default {
   template: await TDR.importTemplate( import.meta ),
   components: await TDR.importComponents([
@@ -12,9 +13,9 @@ export default {
   inject: [
     'deleteFriend'
   ],
-  mixins: await TDR.importMixins([
-    'alertMixin'
-  ]),
+  // mixins: await TDR.importMixins([
+  //   'alertMixin'
+  // ]),
   data() {
     return {
       detailsAreVisible: false
@@ -24,5 +25,8 @@ export default {
     toggleDetails() {
       this.detailsAreVisible = !this.detailsAreVisible;
     },
-  }
-};
+  },
+  setup: async _ => await TDR.importHooks([
+    'alertHook'
+  ])
+}

@@ -1,5 +1,5 @@
 
-import { importTemplate, importComponents, importMixins, importBaseComponents } from './importer/importer.js'
+import { importTemplate, importComponents, importMixins, importHooks, importBaseComponents } from './importer/importer.js'
 import { randomString, randomNumber } from '/utils/string.utils.js'
 import store from './store/store.js'
 
@@ -14,6 +14,7 @@ window.TDR = {
   importTemplate,
   importComponents,
   importMixins,
+  importHooks,
   randomString,
   randomNumber
 }

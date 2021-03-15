@@ -1,10 +1,12 @@
-<ul>
-  <FriendContact 
-    v-for="friend of friends"
-    :key="friend.id"
-    :friend="friend"
-  />
-</ul>
+<Suspense>
+  <ul>
+    <FriendContact 
+      v-for="friend of friends"
+      :key="friend.id"
+      :friend="friend"
+    />
+  </ul>
+</Suspense>
 
 <div 
   style="
